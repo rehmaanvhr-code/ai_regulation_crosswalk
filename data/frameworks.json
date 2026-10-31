@@ -1,0 +1,210 @@
+{
+  "frameworks": {
+    "eu_ai_act": {
+      "name": "EU AI Act (Regulation 2024/1689)",
+      "type": "law",
+      "regions": ["eu"],
+      "note": "Binding for providers and deployers placing AI systems on the EU market or whose outputs are used in the EU. Most obligations fall on high risk systems listed in Annex III, which includes creditworthiness assessment of natural persons."
+    },
+    "aida": {
+      "name": "Canada AIDA (Bill C-27, Part 3)",
+      "type": "proposed law",
+      "regions": ["canada"],
+      "note": "The Artificial Intelligence and Data Act was introduced in 2022 as part of Bill C-27 and died on the order paper when Parliament was prorogued in January 2025. Included here because it shaped Canadian expectations and because a successor bill is widely expected. Treat all references as the last published draft and companion document."
+    },
+    "nist_ai_rmf": {
+      "name": "NIST AI RMF 1.0 (2023)",
+      "type": "voluntary framework",
+      "regions": ["us", "global"],
+      "note": "Voluntary. Organised into four functions: Govern, Map, Measure, Manage. The Generative AI Profile (NIST AI 600 1, 2024) adds actions for generative systems."
+    },
+    "iso_42001": {
+      "name": "ISO/IEC 42001:2023",
+      "type": "certifiable standard",
+      "regions": ["global"],
+      "note": "AI management system standard. Clauses 4 to 10 set the management system, Annex A lists controls, Annex B gives implementation guidance."
+    },
+    "osfi_e23": {
+      "name": "OSFI Guideline E-23 Model Risk Management (2025)",
+      "type": "regulatory guideline",
+      "regions": ["canada"],
+      "note": "Applies to federally regulated financial institutions in Canada from May 2027. Expands the 2017 version to cover all models including AI and machine learning, and introduces a model lifecycle with risk based intensity."
+    },
+    "colorado_ai_act": {
+      "name": "Colorado AI Act (SB 24-205)",
+      "type": "law",
+      "regions": ["us"],
+      "note": "Covers developers and deployers of high risk AI systems that make or are a substantial factor in consequential decisions, including lending and financial services. Effective date was pushed to June 30, 2026 by SB 25B 004."
+    }
+  },
+  "themes": [
+    {
+      "id": "risk_classification",
+      "name": "Risk classification and scoping",
+      "description": "Deciding whether a system falls in scope and at what risk tier.",
+      "triggers": ["any"],
+      "map": {
+        "eu_ai_act": {"level": "required", "ref": "Art. 6 and Annex III; Art. 5 prohibited practices", "text": "Classify the system against the prohibited list and the Annex III high risk use cases. Creditworthiness and insurance pricing for natural persons are high risk."},
+        "aida": {"level": "required", "ref": "s. 7 and proposed regulations on high impact systems", "text": "Assess whether the system is a high impact system under the regulations. The companion document named decisions about services, employment and credit."},
+        "nist_ai_rmf": {"level": "recommended", "ref": "Map 1.1 to Map 1.5", "text": "Establish context, intended purpose and the level of risk the organisation is willing to tolerate."},
+        "iso_42001": {"level": "required", "ref": "Clause 6.1.2 and A.5 AI system impact assessment", "text": "Run an AI risk assessment and an impact assessment proportionate to the system."},
+        "osfi_e23": {"level": "required", "ref": "Section 2 model risk rating", "text": "Assign a model risk rating that drives the intensity of validation and monitoring."},
+        "colorado_ai_act": {"level": "required", "ref": "s. 6-1-1701(9) definition of high risk AI system", "text": "Determine if the system makes or is a substantial factor in a consequential decision."}
+      }
+    },
+    {
+      "id": "data_governance",
+      "name": "Data governance and quality",
+      "description": "Controls over training, validation and test data including representativeness and lawful basis.",
+      "triggers": ["any"],
+      "map": {
+        "eu_ai_act": {"level": "required", "ref": "Art. 10", "text": "Training, validation and testing data must meet quality criteria, be examined for bias and be relevant and representative."},
+        "aida": {"level": "required", "ref": "s. 6 anonymised data; s. 8 measures to identify and mitigate risk", "text": "Establish measures for how anonymised data is used and mitigate risks of harm and biased output."},
+        "nist_ai_rmf": {"level": "recommended", "ref": "Map 2.3, Measure 2.1, Measure 2.2", "text": "Document data provenance, representativeness and test set independence."},
+        "iso_42001": {"level": "required", "ref": "A.7 data for AI systems", "text": "Controls on data acquisition, quality, provenance and preparation."},
+        "osfi_e23": {"level": "required", "ref": "Section 3 model lifecycle: data", "text": "Data used in models must be fit for purpose, traceable and controlled; expectations scale with model risk."},
+        "colorado_ai_act": {"level": "recommended", "ref": "s. 6-1-1702(3) developer documentation on data", "text": "Developers must describe the data used to train the system and known limitations."}
+      }
+    },
+    {
+      "id": "documentation",
+      "name": "Technical documentation and model cards",
+      "description": "Written description of the system, its purpose, design, performance and limits.",
+      "triggers": ["any"],
+      "map": {
+        "eu_ai_act": {"level": "required", "ref": "Art. 11 and Annex IV", "text": "Technical documentation covering general description, development process, monitoring, performance metrics and risk management."},
+        "aida": {"level": "required", "ref": "s. 11 record keeping and s. 12 publication of plain language description", "text": "Keep records of mitigation measures and publish a plain language description of a high impact system."},
+        "nist_ai_rmf": {"level": "recommended", "ref": "Govern 1.4, Map 3.4, Measure 2.8", "text": "Document the system, its intended uses and evaluation methods; model cards and datasheets are named practices."},
+        "iso_42001": {"level": "required", "ref": "Clause 7.5 and A.6.2.7 documentation", "text": "Maintain documented information on the AI system through its lifecycle."},
+        "osfi_e23": {"level": "required", "ref": "Section 3 model development and documentation", "text": "Model documentation must allow an independent party to understand and replicate the model."},
+        "colorado_ai_act": {"level": "required", "ref": "s. 6-1-1702(2) and (3)", "text": "Developers must give deployers documentation on intended use, data, performance, limitations and known risks of algorithmic discrimination."}
+      }
+    },
+    {
+      "id": "human_oversight",
+      "name": "Human oversight",
+      "description": "People can understand, intervene in and override the system.",
+      "triggers": ["decision_impact:high", "decision_impact:medium"],
+      "map": {
+        "eu_ai_act": {"level": "required", "ref": "Art. 14 and Art. 26(2)", "text": "High risk systems must be designed for effective oversight; deployers must assign oversight to competent people."},
+        "aida": {"level": "recommended", "ref": "Companion document on human oversight", "text": "The companion document listed human oversight among expected mitigation measures; the bill itself did not specify."},
+        "nist_ai_rmf": {"level": "recommended", "ref": "Govern 3.2, Manage 2.2", "text": "Define roles for human oversight and mechanisms to override or decommission."},
+        "iso_42001": {"level": "required", "ref": "A.9.3 and B.9.3 responsible use, human oversight", "text": "Determine where human oversight is needed and how it is exercised."},
+        "osfi_e23": {"level": "recommended", "ref": "Section 3 model use and ongoing management", "text": "Model users must understand model limits and have procedures for override when outputs are unreliable."},
+        "colorado_ai_act": {"level": "recommended", "ref": "s. 6-1-1703(4) right to appeal to human review", "text": "Consumers may appeal an adverse consequential decision for human review where technically feasible."}
+      }
+    },
+    {
+      "id": "transparency",
+      "name": "Transparency to affected persons",
+      "description": "Telling people that AI is used and explaining decisions that affect them.",
+      "triggers": ["any"],
+      "map": {
+        "eu_ai_act": {"level": "required", "ref": "Art. 13, Art. 26(11), Art. 50, Art. 86", "text": "Instructions for use, notice to natural persons subject to high risk decisions, chatbot disclosure, and a right to explanation of individual decisions."},
+        "aida": {"level": "required", "ref": "s. 12 plain language description", "text": "Publish a plain language description of how the system is used and the decisions it makes."},
+        "nist_ai_rmf": {"level": "recommended", "ref": "Measure 2.8, Measure 2.9", "text": "Transparency and explainability are listed trustworthiness characteristics to be measured."},
+        "iso_42001": {"level": "required", "ref": "A.8 information for interested parties", "text": "Provide information on the AI system to users and affected parties."},
+        "osfi_e23": {"level": "recommended", "ref": "Section 3 model use", "text": "Explainability expectations rise with model risk, but the guideline speaks to internal users rather than customers."},
+        "colorado_ai_act": {"level": "required", "ref": "s. 6-1-1703(3) and (4), s. 6-1-1704", "text": "Deployers must notify consumers before a consequential decision, give reasons for adverse decisions and disclose interaction with AI."}
+      }
+    },
+    {
+      "id": "bias_testing",
+      "name": "Bias and fairness testing",
+      "description": "Testing for discriminatory outcomes before and after deployment.",
+      "triggers": ["data_types:personal", "decision_impact:high", "decision_impact:medium"],
+      "map": {
+        "eu_ai_act": {"level": "required", "ref": "Art. 10(2)(f) and (g), Art. 9", "text": "Examine data for possible biases that lead to discrimination and take measures to detect and correct them."},
+        "aida": {"level": "required", "ref": "s. 8 and definition of biased output in s. 5", "text": "Establish measures to identify, assess and mitigate risks of biased output."},
+        "nist_ai_rmf": {"level": "recommended", "ref": "Measure 2.11", "text": "Fairness and bias are evaluated and results documented."},
+        "iso_42001": {"level": "recommended", "ref": "A.5.4 and B.5.4 impact assessment on individuals and groups", "text": "Assess impacts on individuals and groups including fairness."},
+        "osfi_e23": {"level": "recommended", "ref": "Section 3 validation and Annex on AI/ML", "text": "Validation should test for unintended bias where models affect customers; expectations align with conduct obligations."},
+        "colorado_ai_act": {"level": "required", "ref": "s. 6-1-1703(2) impact assessment", "text": "Deployers must complete an impact assessment covering known or foreseeable risks of algorithmic discrimination."}
+      }
+    },
+    {
+      "id": "monitoring",
+      "name": "Post deployment monitoring",
+      "description": "Ongoing tracking of performance, drift and harms after go live.",
+      "triggers": ["any"],
+      "map": {
+        "eu_ai_act": {"level": "required", "ref": "Art. 72 and Art. 26(5)", "text": "Providers must run a post market monitoring system; deployers must monitor operation per instructions."},
+        "aida": {"level": "required", "ref": "s. 9 monitoring of mitigation measures", "text": "Monitor compliance with mitigation measures and their effectiveness."},
+        "nist_ai_rmf": {"level": "recommended", "ref": "Manage 4.1, Measure 3.1", "text": "Monitor deployed systems and track risks over time."},
+        "iso_42001": {"level": "required", "ref": "Clause 9.1 and A.6.2.6 operation and monitoring", "text": "Monitor, measure and evaluate AI system performance in operation."},
+        "osfi_e23": {"level": "required", "ref": "Section 3 model monitoring", "text": "Ongoing monitoring with thresholds and escalation, frequency set by model risk rating."},
+        "colorado_ai_act": {"level": "recommended", "ref": "s. 6-1-1703(2)(c) annual review of impact assessment", "text": "Impact assessments must be reviewed at least annually and after substantial modification."}
+      }
+    },
+    {
+      "id": "incident_reporting",
+      "name": "Incident reporting",
+      "description": "Reporting serious failures or harms to regulators or affected parties.",
+      "triggers": ["any"],
+      "map": {
+        "eu_ai_act": {"level": "required", "ref": "Art. 73", "text": "Providers report serious incidents to market surveillance authorities within set deadlines."},
+        "aida": {"level": "required", "ref": "s. 12 notification of material harm", "text": "Notify the Minister as soon as feasible if use of the system results or is likely to result in material harm."},
+        "nist_ai_rmf": {"level": "recommended", "ref": "Manage 4.3, Govern 4.3", "text": "Processes for incident response and sharing incident information."},
+        "iso_42001": {"level": "recommended", "ref": "Clause 10.2 and A.6.2.8 event logging", "text": "Treat AI incidents as nonconformities and keep event logs."},
+        "osfi_e23": {"level": "recommended", "ref": "Section 4 governance and escalation", "text": "Escalate model failures internally; regulatory reporting flows through existing OSFI incident expectations."},
+        "colorado_ai_act": {"level": "required", "ref": "s. 6-1-1702(5) and s. 6-1-1703(7)", "text": "Developers and deployers must notify the Attorney General within 90 days of discovering algorithmic discrimination."}
+      }
+    },
+    {
+      "id": "third_party",
+      "name": "Third party and vendor management",
+      "description": "Oversight of models, APIs and components bought or licensed from others.",
+      "triggers": ["any"],
+      "map": {
+        "eu_ai_act": {"level": "required", "ref": "Art. 25 and Art. 53 for general purpose model providers", "text": "Responsibilities along the value chain; deployers that substantially modify become providers."},
+        "aida": {"level": "not addressed", "ref": "", "text": "The draft placed obligations on whoever makes the system available or manages its operation, without a separate vendor regime."},
+        "nist_ai_rmf": {"level": "recommended", "ref": "Govern 6.1, Govern 6.2, Map 4.1", "text": "Policies for third party software, data and models, including contingency when they fail."},
+        "iso_42001": {"level": "required", "ref": "A.10 third party and customer relationships", "text": "Allocate responsibilities with suppliers and ensure supplier processes meet the organisation's requirements."},
+        "osfi_e23": {"level": "required", "ref": "Section 3 and link to Guideline B-10", "text": "Vendor and open source models are in scope; institutions remain accountable for validation and monitoring."},
+        "colorado_ai_act": {"level": "required", "ref": "s. 6-1-1702 developer duties to deployers", "text": "Developers must furnish deployers with the information needed for impact assessments."}
+      }
+    },
+    {
+      "id": "record_keeping",
+      "name": "Record keeping and logging",
+      "description": "Automatic logs and retention so decisions can be reconstructed.",
+      "triggers": ["any"],
+      "map": {
+        "eu_ai_act": {"level": "required", "ref": "Art. 12, Art. 19, Art. 26(6)", "text": "Automatic logging over the lifetime; providers and deployers keep logs at least six months."},
+        "aida": {"level": "required", "ref": "s. 10 and s. 11", "text": "Keep records of the assessment, mitigation measures and monitoring."},
+        "nist_ai_rmf": {"level": "recommended", "ref": "Govern 1.5, Measure 2.1", "text": "Keep records of risk management decisions and evaluation results."},
+        "iso_42001": {"level": "required", "ref": "Clause 7.5.3 and A.6.2.8", "text": "Control documented information and log events through operation."},
+        "osfi_e23": {"level": "required", "ref": "Section 4 model inventory", "text": "Maintain an enterprise model inventory with status, rating and ownership."},
+        "colorado_ai_act": {"level": "required", "ref": "s. 6-1-1703(2)(e) retention", "text": "Retain impact assessments and records for at least three years after final deployment."}
+      }
+    },
+    {
+      "id": "accountability",
+      "name": "Accountability and governance roles",
+      "description": "Named owners, senior oversight and an internal control structure.",
+      "triggers": ["any"],
+      "map": {
+        "eu_ai_act": {"level": "required", "ref": "Art. 9, Art. 17, Art. 26", "text": "Risk management system and quality management system for providers; deployer duties."},
+        "aida": {"level": "recommended", "ref": "Companion document on accountability framework", "text": "An accountability framework with roles, training and policies was expected to be set by regulation."},
+        "nist_ai_rmf": {"level": "recommended", "ref": "Govern 1.1 to Govern 2.2", "text": "Policies, roles and senior accountability for AI risk."},
+        "iso_42001": {"level": "required", "ref": "Clause 5 leadership, A.3 internal organisation", "text": "Top management commitment, policy and defined roles."},
+        "osfi_e23": {"level": "required", "ref": "Section 4 governance framework", "text": "Senior management owns the model risk framework; independent review function; clear model owner, developer, validator roles."},
+        "colorado_ai_act": {"level": "required", "ref": "s. 6-1-1703(1) risk management policy", "text": "Deployers must adopt a risk management policy and program; NIST AI RMF or ISO 42001 are named as reference frameworks."}
+      }
+    },
+    {
+      "id": "generative_ai",
+      "name": "Generative and general purpose model duties",
+      "description": "Extra obligations when the system uses a general purpose or generative model.",
+      "triggers": ["generative:true"],
+      "map": {
+        "eu_ai_act": {"level": "required", "ref": "Art. 50(2), Art. 53 to Art. 55", "text": "Mark synthetic content; general purpose model providers keep technical documentation, copyright policy and training summary; systemic risk models face evaluation and incident duties."},
+        "aida": {"level": "recommended", "ref": "Minister's November 2023 proposed amendments", "text": "Proposed amendments would have added obligations for general purpose systems and machine learning models."},
+        "nist_ai_rmf": {"level": "recommended", "ref": "NIST AI 600 1 Generative AI Profile", "text": "Actions for confabulation, information integrity, harmful content and data privacy specific to generative systems."},
+        "iso_42001": {"level": "not addressed", "ref": "", "text": "No generative specific controls; general controls apply."},
+        "osfi_e23": {"level": "recommended", "ref": "Annex on AI and machine learning models", "text": "Generative models are models; explainability and monitoring expectations are heightened where outputs are not deterministic."},
+        "colorado_ai_act": {"level": "recommended", "ref": "s. 6-1-1704 disclosure of AI interaction", "text": "Consumers must be told when they are interacting with an AI system."}
+      }
+    }
+  ]
+}
