@@ -1,0 +1,10 @@
+{
+  "name": "fraud_detection",
+  "description": "Real time transaction scoring that blocks or holds card payments suspected to be fraudulent.",
+  "use_case": "fraud",
+  "data_types": ["personal", "transactional"],
+  "decision_impact": "medium",
+  "regions": ["canada", "us"],
+  "generative": false,
+  "operator_type": "financial_institution"
+}

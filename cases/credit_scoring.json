@@ -1,0 +1,10 @@
+{
+  "name": "credit_scoring",
+  "description": "Gradient boosted model that scores consumer loan applications and sets the approve or decline recommendation.",
+  "use_case": "credit",
+  "data_types": ["personal", "financial"],
+  "decision_impact": "high",
+  "regions": ["canada", "eu"],
+  "generative": false,
+  "operator_type": "financial_institution"
+}

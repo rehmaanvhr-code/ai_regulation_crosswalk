@@ -1,0 +1,10 @@
+{
+  "name": "customer_chatbot",
+  "description": "Large language model assistant that answers account questions and helps customers file disputes.",
+  "use_case": "customer_service",
+  "data_types": ["personal", "conversational"],
+  "decision_impact": "low",
+  "regions": ["canada", "us", "eu"],
+  "generative": true,
+  "operator_type": "financial_institution"
+}
